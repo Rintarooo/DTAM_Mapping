@@ -1,0 +1,66 @@
+{
+	"dataset_name": "fountain",
+	"file":{
+		"filename": "input/fountain/p5.txt",
+		"dir_img": "input/fountain/",
+		"//":[
+			"p11.txt, p7.txt, p5.txt"
+		]
+	},
+	"img_size":{
+		"width_init": 3072.0,
+		"height_init": 2048.0,
+		"width": 768,
+		"height": 512,
+		"//":[
+			"width, height values come from p.95/324, newcombe.phd.paper",
+			"width = 768;//480;//3072;//640;",
+			"height = 512;//320;//2048;//480;"
+		]
+	},
+	"K":{
+		"fx_init":2759.48,
+		"fy_init":2764.16,
+		"cx_init":1520.69,
+		"cy_init":1006.81
+	},
+	"costvolume": {
+		"depth_min":4.0,
+		"depth_max":14.0,
+		"layers_" : 256,
+		"frames_per_reference_image" :5,
+		"similarity": "SSD",
+		"//":[
+			"layers_: 32,64,256",
+			"newcombe phd paper p.94/324, Figure4.1",
+			"depth range: [4m(1/1/4.0), 14m(1/1/14.0)]",
+			"far_ = 1/depth_max = inv_depth_min",
+			"similarity = per_pixel, SAD, SSD",
+			"inv depth range [0,1], p.82/234, phd.thesis newcombe"
+		]
+	},
+	"regulariser":{
+		"alphaG" : 0.065,
+		"betaG": 1.5,
+		"theta_start": 0.2,
+		"theta_min" : 1.0e-4,
+		"epsilon" : 0.0001,
+		"lambda" : 1.0,
+		"scale_Eaux" : 100,
+		"//":[
+			"https://github.com/ravich2-7183/openDTAM/blob/master/data/openDTAM_settings_ahanda.yaml#L43-L52",
+			"alphaG and betaG --> phd thesis p.105, Figure 4.11, 4.5. Depth Map Denoising with Convex Optimisation",
+			"theta_start, theta_min --> phd thesis p.140/324",
+			"Figure 5.10, phd thesis page.141/324, 5.3. Global Cost Volume Optimisation",
+			"alphaG: 0.15f;0.015, 0.025//10;100.0;https://github.com/Rintarooo/OpenDTAM/blob/opencv_3.4.0_cuda_8.0/Cpp/DepthmapDenoiseWeightedHuber/DepthmapDenoiseWeightedHuber.cu#L85",
+			"betaG: 1,//1.6;//1.1;//",
+			"epsilon: 0.0001(=1.0e-4), 0.00147,//0.00159;// huber epsilon, parameter that defines the threshold between quadratic and L1 penalization. value from pg 103 of phd thesis, DTAM paper Equation(4), epsilon is set to a very small value 1.0e^-4(DTAM paper)",
+			"lambda: 1.0//2.0;//0.80;// 0.8->minimize_A:phd thesis p.140/324, λ should reflect the data term quality and is therefore set dynamically, lambda = 1, DTAM paper. λ is a free parameter controlling the trade-off between the data term and the regularizer"
+		]
+	}, 
+	"flag":{
+		"isRegulariser": true,
+		"isResetCostVolume": true,
+		"isViewNoisyPoints": false
+	}
+}

@@ -1,0 +1,86 @@
+{
+	"dataset_name": "tum_rgbd",
+	"file":{
+		"filename": "input/tum_rgbd/tmp.txt",
+		"dir_img": "input/tum_rgbd/",
+		"//":[
+			"rgb_pose_fix.txt;// rgb_pose.txt"
+		]
+	},
+	"img_size":{
+		"width_init": 640.0,
+		"height_init": 480.0,
+		"width": 640,
+		"height": 480
+	},
+	"K":{
+		"fx_init":517.3,
+		"fy_init":516.5,
+		"cx_init":318.6,
+		"cy_init":255.3,
+		"//":[
+			"// https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats#calibration_of_the_color_camera",
+			"fx = 517.3;//525;fy = 516.5;//525;cx = 318.6;//319.5;cy = 255.3;//239.5;"
+		]
+	},
+	"costvolume": {
+		"depth_min":0.5,
+		"depth_max":6.0,
+		"layers_" : 256,
+		"frames_per_reference_image" :30,
+		"similarity": "per_pixel",
+		"//":[
+			"far_ = 1/6.0;//0.1;//0.3;//0.5;",
+			"depth range: [0.5m(=50cm), 6.0m]",
+			"depth range: [depth min (1/near), depth max(1/far)]",
+			"depth range: [0.2m(=20cm)(1/5), 5m(1/0.3)]"
+		]
+	},
+	"regulariser":{
+		"alphaG" : 0.015,
+		"betaG": 1,
+		"theta_start": 0.2,
+		"theta_min" : 1.0e-4,
+		"epsilon" : 0.00147,
+		"lambda" : 1.0,
+		"//":[
+			"https://github.com/ravich2-7183/openDTAM/blob/master/data/openDTAM_settings_ahanda.yaml#L43-L52",
+			"alphaG and betaG --> phd thesis p.105, Figure 4.11, 4.5. Depth Map Denoising with Convex Optimisation",
+			"theta_start, theta_min --> phd thesis p.140/324",
+			"Figure 5.10, phd thesis page.141/324, 5.3. Global Cost Volume Optimisation",
+			"alphaG: 0.15f;//10;100.0;https://github.com/Rintarooo/OpenDTAM/blob/opencv_3.4.0_cuda_8.0/Cpp/DepthmapDenoiseWeightedHuber/DepthmapDenoiseWeightedHuber.cu#L85",
+			"betaG: 1,//1.6;//1;//",
+			"epsilon: 0.00147,//1.0e-4;//0.00159;// huber epsilon, parameter that defines the threshold between quadratic and L1 penalization. value from pg 103 of phd thesis, DTAM paper Equation(4), epsilon is set to a very small value 1.0e^-4(DTAM paper)",
+			"lambda: 1.0//2.0;//0.80;// 0.8->minimize_A:phd thesis p.140/324, λ should reflect the data term quality and is therefore set dynamically, lambda = 1, DTAM paper. λ is a free parameter controlling the trade-off between the data term and the regularizer"
+		]
+	}, 
+	"outlier":{
+		"method_type": 1,
+		"filter_type": 1,
+		"normal_type": 1,
+		"iter": 30,
+		"window_size": 1,
+		"sigma_spatial_max": 60.0,
+		"sigma_spatial_min": 2.0,
+		"sigma_color": 1,
+		"threshold_dist_max": 1.0,
+		"threshold_dist_min": 1.0,
+		"//":[
+			"method_type 1: surface2point, 2: dist2dist",
+			"filter_type 1: jointBilateralFilter, 4: GaussianFilter",
+			"normal_type 1: cross_product, 2: plane fitting SVD",
+			"threshold_dist: 0.001;//4.5;//0.5;// 0.25;",
+			"// const float sigma_spatial_max = 60.0;//5.0;//20.0;//40.0;//1.6;//1.0;",
+			"// const float sigma_spatial_min = 2.0;",
+			"// const int iter = 30;//10;",
+			"// filter_type = 1;// jointBilateralFilter",
+			"sigma_color; 2.0/255.0 = 0.00784313725;//1//0.1"
+		]
+	},
+	"flag":{
+		"isRegulariser": true,
+		"isOutlier": false,
+		"isResetCostVolume": true,
+		"isViewNoisyPoints": true
+	}
+}

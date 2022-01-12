@@ -1,0 +1,10 @@
+build/
+rgb/
+/*.png
+/input/Trajectory_30_seconds/*
+!input/Trajectory_30_seconds/README.md
+/input/icl_nuim/*
+!input/icl_nuim/README.md
+*.ply
+.DS_Store
+screenshot*

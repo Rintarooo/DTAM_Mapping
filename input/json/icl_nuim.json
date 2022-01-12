@@ -1,0 +1,57 @@
+{
+	"dataset_name": "icl_nuim",
+	"file":{
+		"filename": "input/icl_nuim/livingRoom2.gt.freiburg",
+		"dir_img": "input/icl_nuim/",
+		"//":[
+			"rgb_pose_fix.txt;// rgb_pose.txt"
+		]
+	},
+	"img_size":{
+		"width_init": 640.0,
+		"height_init": 480.0,
+		"width": 640,
+		"height": 480
+	},
+	"K":{
+		"fx_init":481.2,
+		"fy_init":-480.0,
+		"cx_init":319.5,
+		"cy_init":239.5
+	},
+	"costvolume": {
+		"depth_min":1.0,
+		"depth_max":6.0,
+		"layers_" : 256,
+		"frames_per_reference_image" :20,
+		"similarity": "per_pixel",
+		"//":[
+			"depth range: [1m(1/1.0), 5m(1/5.0)]",
+			"near_ = 1/1.0;//2, far_ = 1/5.0;//1/5.0;//0.1;"
+		]
+	},
+	"regulariser":{
+		"alphaG" : 0.4,
+		"betaG": 1,
+		"theta_start": 0.2,
+		"theta_min" : 1.0e-4,
+		"epsilon" : 0.00147,
+		"lambda" : 1.0,
+		"scale_Eaux" : 10000,
+		"//":[
+			"https://github.com/ravich2-7183/openDTAM/blob/master/data/openDTAM_settings_ahanda.yaml#L43-L52",
+			"alphaG and betaG --> phd thesis p.105, Figure 4.11, 4.5. Depth Map Denoising with Convex Optimisation",
+			"theta_start, theta_min --> phd thesis p.140/324",
+			"Figure 5.10, phd thesis page.141/324, 5.3. Global Cost Volume Optimisation",
+			"alphaG: 0.15f;//10;100.0;https://github.com/Rintarooo/OpenDTAM/blob/opencv_3.4.0_cuda_8.0/Cpp/DepthmapDenoiseWeightedHuber/DepthmapDenoiseWeightedHuber.cu#L85",
+			"betaG: 1,//1.6;//1;//",
+			"epsilon: 0.00147,//1.0e-4;//0.00159;// huber epsilon, parameter that defines the threshold between quadratic and L1 penalization. value from pg 103 of phd thesis, DTAM paper Equation(4), epsilon is set to a very small value 1.0e^-4(DTAM paper)",
+			"lambda: 1.0//2.0;//0.80;// 0.8->minimize_A:phd thesis p.140/324, λ should reflect the data term quality and is therefore set dynamically, lambda = 1, DTAM paper. λ is a free parameter controlling the trade-off between the data term and the regularizer"
+		]
+	}, 
+	"flag":{
+		"isRegulariser": false,
+		"isResetCostVolume": true,
+		"isViewNoisyPoints": true
+	}
+}
