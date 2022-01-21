@@ -1,9 +1,24 @@
-# DTAM implementation(Mapping only)
+# DTAM implementation (Mapping only)
 
-in progress.
+![image](https://user-images.githubusercontent.com/51239551/150547085-6b7eb87d-8c34-4c25-9585-48c8c7297d31.png)
+
+implementation for DTAM[Newcombe+, 2011] using C++/CUDA
 
 ## Usage
 
+### set up your environment using Docker (optional)
+follow the instruction in `docker/README.md`
+```bash
+cat docker/README.md
+```
+<br>
+
+### download `fountain-P11` dataset
+follow the instruction in `input/fountain/README.md`
+```bash
+cat input/fountain/README.md
+```
+<br>
 
 ### build
 ```bash
@@ -17,16 +32,22 @@ in progress.
 ```
 <br>
 
-## debug
+### change parameters as you like
+```bash
+vim input/json/fountain.json
+```
+<br>
 
-### memory checker
+## debug CUDA kernel (optional)
+
+### 1. memory checker
 
 ```bash
 cuda-memcheck ./build/main input/json/fountain.json
 ```
 <br>
 
-### cuda-gdb
+### 2. cuda-gdb
 
 ```bash
 cuda-gdb ./build/main

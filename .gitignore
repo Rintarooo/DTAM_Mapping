@@ -1,6 +1,8 @@
 build/
 rgb/
 /*.png
+/input/fountain/urd/*
+/input/fountain/gt/*
 /input/Trajectory_30_seconds/*
 !input/Trajectory_30_seconds/README.md
 /input/icl_nuim/*

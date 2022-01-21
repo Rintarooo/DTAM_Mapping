@@ -45,7 +45,6 @@ export CUDA_DEBUGGER_SOFTWARE_PREEMPTION=1
 
 
 # Usage
-* update 2021,12,23
 modify `dockerfiles/Dockerfile` depending on your environment
 (such as your desired OpenCV version, Compute Capability(CC) of your GPU).
 ```bash
