@@ -1,8 +1,13 @@
 # DTAM implementation (Mapping only)
 
-![image](https://user-images.githubusercontent.com/51239551/150547085-6b7eb87d-8c34-4c25-9585-48c8c7297d31.png)
+re-implementation for [DTAM: Dense Tracking and Mapping[Newcombe+, 2011]](https://www.doc.ic.ac.uk/~ajd/Publications/newcombe_etal_iccv2011.pdf) for Mapping only using C++/CUDA
 
-implementation for DTAM[Newcombe+, 2011] using C++/CUDA
+![image1](https://user-images.githubusercontent.com/51239551/150547085-6b7eb87d-8c34-4c25-9585-48c8c7297d31.png)
+
+<!-- ![image2](https://user-images.githubusercontent.com/51239551/172653443-5fdbf493-28fa-41df-8eed-0622fe199c57.png)
+ -->
+<img src="https://user-images.githubusercontent.com/51239551/172653443-5fdbf493-28fa-41df-8eed-0622fe199c57.png" width="870">
+
 
 ## Usage
 
